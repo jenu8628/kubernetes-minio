@@ -5,7 +5,7 @@ metadata:
 
 spec:
   capacity:
-    storage: 10Gi
+    storage: 5Gi
 
   accessModes:
   - ReadWriteOnce
@@ -15,4 +15,13 @@ spec:
   storageClassName: local-storage
 
   local:
-    path: /data
+    path: /data/volumes/pv1
+
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - worker1
